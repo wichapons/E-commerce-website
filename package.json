@@ -1,0 +1,25 @@
+{
+  "name": "e-commerce-website",
+  "version": "1.0.0",
+  "description": "This repository contains the source code for an online shopping website, built for the purpose of web development education. The website is built using a combination of JavaScript, CSS and HTML as a frontend, NodeJS for backend and MongoDB as a database. The code has been refactored using the MVC (Model-View-Controller) method to improve maintainability and scalability.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wichapons/E-commerce-website.git"
+  },
+  "author": "Wichapon V",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wichapons/E-commerce-website/issues"
+  },
+  "homepage": "https://github.com/wichapons/E-commerce-website#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
