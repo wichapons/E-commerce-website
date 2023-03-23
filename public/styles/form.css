@@ -1,0 +1,15 @@
+form hr{
+    margin:1rem;
+}
+
+label {
+    color:antiquewhite;
+    display:block;
+    margin-bottom: 0.25rem;
+}
+
+input,
+textarea{
+    font: inherit;
+    width: 90%;
+}
