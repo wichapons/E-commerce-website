@@ -4,4 +4,48 @@
 
 html {
     font-family:'Raleway','san-serif' ;
+
+    /* define my own constant */
+    --color-gray-800: rgb(37, 36, 36);  
+    --space-1:0.25rem;
+    --space-4:1rem;
+}
+
+body{
+    background-color: var(--color-gray-800);
+    margin:0;
+    color:antiquewhite;
+}
+
+main{
+    /* use max-width in case of using a big screen device, 90% width would be to huge so I use max width to control the size */
+    width:90%;
+    max-width: 40rem;
+    margin: auto;
+}
+
+ul, 
+ol{
+    list-style: none;
+    margin:0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color:rgb(215, 152, 69) ;
+}
+
+.btn{
+    cursor:pointer;
+    font:inherit;
+    background-color: orange;
+    padding: 0.3rem 0.25rem;
+    border:1px solid;
+    border-radius: 4px;
+}
+
+.btn:hover,
+.btn:active{
+    background-color: rgb(162, 101, 26);
 }
