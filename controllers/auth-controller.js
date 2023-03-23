@@ -1,6 +1,9 @@
-//for fetching data of sign up button
-function UserSignup(req,res){ 
+
+function UserSignup(req,res){  //for fetching data of sign up button
     res.render('customer/authentication/signup');
+}
+
+function signup(req,res){
 }
 
 function UserLogin(req,res){ 
@@ -12,5 +15,6 @@ function UserLogin(req,res){
 
 module.exports= {
     UserSignup:UserSignup,
-    UserLogin:UserLogin
+    UserLogin:UserLogin,
+    signup:signup
 };
