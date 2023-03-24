@@ -39,10 +39,11 @@ a{
 .btn{
     cursor:pointer;
     font:inherit;
-    background-color: orange;
-    padding: 0.3rem 0.25rem;
+    background-color: rgb(208, 141, 17);
+    padding: 0.3rem 0.5rem;
     border:1px solid;
     border-radius: 4px;
+    color: antiquewhite;
 }
 
 .btn:hover,
