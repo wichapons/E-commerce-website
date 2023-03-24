@@ -10,7 +10,7 @@ app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'))
 
 app.use(express.static('public')); // makes its content available to the client side of the application through HTTP requests.
-
+app.use(express.urlencoded({extended:false})); // sets up middleware in an Express application to handle URL-encoded form data.
 app.use(authRoutes); // add middleware for incoming request
 
 db.connectDb().then(()=>{
