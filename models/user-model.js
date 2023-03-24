@@ -1,4 +1,5 @@
 const db = require('../database/database')
+const bcrypt = require('bcrypt')
 
 class User {
     constructor(email,password,fullname,street,postal,city){
@@ -12,12 +13,15 @@ class User {
         };
     }
 
-    signup(){
-        db.getDb().collection('users').insertOne({
+    async signup(){
+        const  hashedPassword = await bcrypt.hash(this.password,12)  // encrypt password with saltRounds = 12
+        await db.getDb().collection('users').insertOne({
         email: this.email,
-        password: this.password,
+        password: hashedPassword,
         name: this.name ,
         address: this.address
         });
     }
 }
+
+module.exports = User;
