@@ -13,6 +13,14 @@ class User {
         };
     }
 
+    async getUserDataByEmail(){
+       return await db.getDb.collection('users').findOne({email:this.email});
+    }
+
+    async verifyPassword(hashedPassword){
+        return await bcrypt.compare(this.password,hashedPassword)
+    }
+
     async signup(){
         const  hashedPassword = await bcrypt.hash(this.password,12)  // encrypt password with saltRounds = 12
         await db.getDb().collection('users').insertOne({
