@@ -1,18 +1,26 @@
 const path = require('path')
 const express = require('express');
-const authRoutes = require('./routes/auth-route');
+
 const app = express();
+
+//routes
+const authRoutes = require('./routes/auth-route');
+const productRoutes = require('./routes/product-route');
+const homeRoutes = require('./routes/home-route');
 
 //cookies and session
 const expressSession = require('express-session');
 const createSessionConfig = require('./config/session');
 
-//csrf protection
+//csrf protection middleware
 const csrf = require('csurf');
 const addCsrfTokenMiddleware = require('./middlewares/csrf-token');
 
 //error handle middleware
 const errorHandleMiddleware = require('./middlewares/error-handle');
+
+//checkIsAuth middleware
+const checkIsAuth = require('./middlewares/checkIsAuth')
 
 //db
 const db = require('./database/database');
@@ -35,7 +43,14 @@ app.use(addCsrfTokenMiddleware);
 
 //route
 app.use(authRoutes); // add middleware for incoming request
+app.use(productRoutes);
+app.use(homeRoutes);
+
+//error handle
 app.use(errorHandleMiddleware);
+//check is authenticated
+app.use(checkIsAuth);
+
 
 db.connectDb().then(()=>{
     app.listen(3000);
