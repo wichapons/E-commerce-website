@@ -2,6 +2,12 @@
 <header>
     <div><a href="/">Topazio Online Shop</a> </div>
     <nav>
-        
+        <ul>
+            <% if(locals.isAuth) {%>
+            <li>
+                <button>logout</button>
+            </li>
+            <% } %>
+        </ul>
     </nav>
 </header>
