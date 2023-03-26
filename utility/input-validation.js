@@ -9,9 +9,6 @@ function isEmpty(input){
 }
 
 function isInputValid(email,password,name,street,postal,city){
-
-    console.log(email,password,name,street,postal,city);
-
     if (email && 
         email.includes('@') && 
         password && 
@@ -22,10 +19,10 @@ function isInputValid(email,password,name,street,postal,city){
         isEmpty(postal) &&
         isEmpty(city)
         ){
-            console.log('hi trure');
+            console.log('isInputValid=true');
             return true;
     }else{
-        console.log('hi flase');
+        console.log('isInputValid=false');
         return false;
     }
 }
