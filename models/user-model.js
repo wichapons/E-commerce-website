@@ -14,10 +14,11 @@ class User {
     }
 
     async getUserDataByEmail(){
-       return await db.getDb.collection('users').findOne({email:this.email});
+       return await db.getDb().collection('users').findOne({email:this.email});
     }
 
     async verifyPassword(hashedPassword){
+        console.log(await bcrypt.compare(this.password,hashedPassword));
         return await bcrypt.compare(this.password,hashedPassword)
     }
 
