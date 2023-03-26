@@ -40,17 +40,17 @@ app.use(expressSession(createSessionConfig()));
 //csrf protection
 app.use(csrf()); // put CSRF protection middleware before any routes that handle user input or requests
 app.use(addCsrfTokenMiddleware);
+//check is authenticated
+app.use(checkIsAuth);
 
 //route
 app.use(authRoutes); // add middleware for incoming request
 app.use(productRoutes);
 app.use(homeRoutes);
 
+
 //error handle
 app.use(errorHandleMiddleware);
-//check is authenticated
-app.use(checkIsAuth);
-
 
 db.connectDb().then(()=>{
     app.listen(3000);
