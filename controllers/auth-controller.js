@@ -34,11 +34,16 @@ async function login(req,res){
     }
     console.log('Username and password is correct ');
     //after user is authorized create a session
-    
+
     await authUtility.createUserSession(req,existingUser,()=>{
         console.log('session has been created');
         res.redirect('/');
     });
+}
+
+function logout(req,res){
+    authUtility.deleteUserSession(req);
+    res.redirect('/login')
 }
 
 
@@ -47,5 +52,6 @@ module.exports= {
     UserSignup:UserSignup,
     UserLogin:UserLogin,
     signup:signup,
-    login:login
+    login:login,
+    logout:logout
 };
