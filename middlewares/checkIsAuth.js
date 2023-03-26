@@ -1,9 +1,12 @@
 function checkIsAuthenticated(req,res,next){
-    const uid = req.session.uid //get uid in the cookie 
-    if(!uid){
+    const userID = req.session.userID //get uid in the cookie 
+    if(!userID){
+        console.log('user id not found! Cannot login');
         return next();
     }
-    res.locals.uid = uid;
+    console.log('user authenticated!');
+    res.locals.userID = userID;
+    console.log(userID);
     res.locals.isAuth = true;
     next();
 }
