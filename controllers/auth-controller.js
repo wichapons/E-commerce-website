@@ -23,17 +23,21 @@ async function login(req,res){
     const user = new User(email,password);
     const existingUser = await user.getUserDataByEmail();
     if(!existingUser){
-        alert('user not found')
-        return res.redirect('/login')
+        console.log('user not found in database');
+        return res.redirect('/login');
     }
-    const IsPasswordCorrect = user.verifyPassword(existingUser.password);
+    const IsPasswordCorrect = await user.verifyPassword(existingUser.password);
+    console.log('IsPasswordCorrect=='+IsPasswordCorrect);
     if (!IsPasswordCorrect){
-        alert('password is not correct, please try again')
-        return res.redirect('/login')
+        console.log('password is not correct, please try again');
+        return res.redirect('/login');
     }
+    console.log('Username and password is correct ');
     //after user is authorized create a session
-    authUtility.createUserSession(req,existingUser,()=>{
-        res.redirect('/')
+    
+    await authUtility.createUserSession(req,existingUser,()=>{
+        console.log('session has been created');
+        res.redirect('/');
     });
 }
 
@@ -42,5 +46,6 @@ async function login(req,res){
 module.exports= {
     UserSignup:UserSignup,
     UserLogin:UserLogin,
-    signup:signup
+    signup:signup,
+    login:login
 };
