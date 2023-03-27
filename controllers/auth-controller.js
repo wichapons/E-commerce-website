@@ -6,7 +6,7 @@ const sessionFlash = require('../utility/session-flash')
 async function UserSignup(req,res){  //for fetching data of sign up button
 
     let sessionData = await sessionFlash.getSessionData(req);
-    if(!sessionData){
+    if(!sessionData){ // if no session found, create empty inputData
         sessionData = { email:'', confirmEmail:'', password:'', fullname:'', address:'', street:'', postal:'', city:'' };
     };
     console.log(sessionData);
@@ -56,20 +56,20 @@ async function signup(req,res,next){
             return;
         }
         await user.signup();
-    } catch(err){
-        console.log('cannot execute user.signup() Error:' +err);
-        return;
+            } catch(err){
+                console.log('cannot execute user.signup() Error:' +err);
+            return;
     };
     res.redirect('/login');
 }
 
 function UserLogin(req,res){ 
     let sessionData = sessionFlash.getSessionData(req);
-
     if(!sessionData){
         let { email, password } = '';
         sessionData = {email, password };
     }
+    console.log(sessionData.email,sessionData.password,sessionData.errorMsg );
 
     res.render('customer/authentication/login',{inputData:sessionData});
 }
@@ -82,44 +82,56 @@ async function login(req,res){
         existingUser = await user.getUserDataByEmail();
     }catch(err){
         console.log('cannot get the data of existingUser. Error:' + err);
+        next(err);
+        return;
     }
 
-    if(!existingUser){
-        //create flash session for alert message
+    if (!existingUser) {
+        console.log('User with email ' + email + ' not found.');
         sessionFlash.flashDataToSession(req,{
-        errorMsg: 'Password or username is invalid',
-        email:email, 
-        password:password 
-    },()=>{
-        console.log('Password or username is invalid');
-        return res.redirect('/login');
-    });
-        
+            errorMsg: ' username is invalid',
+            email:email, 
+            password:password
+            },()=>{
+            console.log('session saved');
+            res.redirect('/login')
+           });
+           return;
+      }
+    console.log('username was found on DB, checking password..');
+
+    let isPasswordCorrect;
+    try{ isPasswordCorrect = await user.verifyPassword(existingUser.password);
+    }catch(err){
+        console.log('error: cannot check password:'+err);
+        return res.redirect('/login')
     }
-    const IsPasswordCorrect = await user.verifyPassword(existingUser.password);
-    console.log('IsPasswordCorrect=='+IsPasswordCorrect);
-    if (!IsPasswordCorrect){
+    if (!isPasswordCorrect){
         //create flash session for alert message
-        sessionFlash.flashDataToSession(req,{
-            errorMsg: 'Password or username is invalid',
+        await sessionFlash.flashDataToSession(req,{
+            errorMsg: 'Password is invalid',
             email:email, 
             password:password 
         },()=>{
-            console.log('Password or username is invalid');
-            return res.redirect('/login');
+            console.log('Password is invalid');
+            res.redirect('/login');
         });
+        return;
     }
     
+
     //after user is authorized create a session
     await authUtility.createUserSession(req,existingUser,()=>{
         console.log('session has been created');
         res.redirect('/');
     });
+    return;
 }
 
 function logout(req,res){
     authUtility.deleteUserSession(req);
     res.redirect('/login')
+    return;
 }
 
 
