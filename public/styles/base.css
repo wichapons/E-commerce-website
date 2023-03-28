@@ -51,3 +51,18 @@ a{
     background-color: rgb(162, 101, 26);
 }
 
+.alert{
+    border-radius: 4px;
+    color: brown;
+    background-color: rgb(243, 197, 197);
+    padding: 0.2rem;
+    
+} 
+.alert h2{
+    font-size: 1.2rem;
+    margin: 0.5rem auto;
+}
+.alert p{
+    margin: 0.5rem auto;
+}
+ 
