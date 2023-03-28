@@ -41,11 +41,11 @@ async function signup(req,res,next){
         });
         return;
     }
-    
-    let getMatchedEmailDB = await user.getUserDataByEmail();
-    let existEmail = getMatchedEmailDB.email
+    let existEmail = await user.getUserDataByEmail();
+    //let getMatchedEmailDB = await user.getUserDataByEmail();
+    //let existEmail = getMatchedEmailDB.email
     try{
-        if(existEmail=== email){
+        if(existEmail){
             sessionFlash.flashDataToSession(req,{
             errorMsg: 'This email already existed in our server',
             ...inputData
@@ -61,6 +61,7 @@ async function signup(req,res,next){
             return;
     };
     res.redirect('/login');
+    return;
 }
 
 function UserLogin(req,res){ 
@@ -119,7 +120,6 @@ async function login(req,res){
         return;
     }
     
-
     //after user is authorized create a session
     await authUtility.createUserSession(req,existingUser,()=>{
         console.log('session has been created');
