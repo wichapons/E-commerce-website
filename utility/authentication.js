@@ -5,8 +5,8 @@ async function createUserSession(req,user,action){
     action();
 };
 
-function deleteUserSession(){
-    req.session.uid = null;
+function deleteUserSession(req){
+    req.session.userID = null;
 }
 
 module.exports={
