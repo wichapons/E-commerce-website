@@ -7,6 +7,7 @@ function checkIsAuthenticated(req,res,next){
     console.log('user authenticated!');
     res.locals.userID = userID;
     res.locals.isAuth = true;
+    res.locals.isAdmin = req.session.isAdmin;
     next();
 }
 
