@@ -1,0 +1,43 @@
+#main-header{
+    width: 100%;
+    max-width: 50rem;
+    margin: 0 auto;
+    height: 6rem;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+
+#main-logo{
+    font-weight: bold;
+    font-size: 1.7rem;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+}
+
+.nav-items li{
+    margin: 0 0.5rem;
+}
+
+#mobile-menu-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#mobile-menu-btn span{
+    width: 1.5rem;
+    height: 0.2rem;
+    background-color: gray;
+    
+}
