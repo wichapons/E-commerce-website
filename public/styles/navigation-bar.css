@@ -41,3 +41,19 @@
     background-color: gray;
     
 }
+
+@media (min-width:48rem){
+    #mobile-menu-btn{
+        display: none;
+        
+    }
+    #mobile-nav-bar{
+        display: none;
+    }
+    .nav-items :hover {
+        color: rgb(255, 123, 0);
+    }
+    .nav-items a{
+        padding: 0 0.5rem;
+    }
+}
