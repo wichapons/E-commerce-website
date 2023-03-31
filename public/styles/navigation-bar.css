@@ -58,7 +58,7 @@ main{
     height: calc(100vh - 6rem);
     background-color: var(--color-gray-800);
     align-items: center;
-    display: flex;
+    display: none;
 }
 
 #mobile-menu .nav-items a{
