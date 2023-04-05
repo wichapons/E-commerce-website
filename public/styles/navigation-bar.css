@@ -87,6 +87,10 @@ main{
     
 }
 
+#mobile-menu.open{   /* select all id = mobile-menu and has class named 'open' */
+    display: flex;
+}
+
 
 
 @media (min-width:48rem){
