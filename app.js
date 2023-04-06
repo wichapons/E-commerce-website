@@ -7,6 +7,7 @@ const app = express();
 const authRoutes = require('./routes/auth-route');
 const productRoutes = require('./routes/product-route');
 const homeRoutes = require('./routes/home-route');
+const adminRoutes = require('./routes/admin-routes');
 
 //cookies and session
 const expressSession = require('express-session');
@@ -47,6 +48,7 @@ app.use(checkIsAuth);
 app.use(authRoutes); // add middleware for incoming request
 app.use(productRoutes);
 app.use(homeRoutes);
+app.use('/admin',adminRoutes); // will only be executed for requests that start with the /admin path.
 
 
 //error handle
