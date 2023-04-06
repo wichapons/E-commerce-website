@@ -45,6 +45,9 @@ a{
     border-radius: 4px;
     color: antiquewhite;
 }
+.reset-btn{
+    background-color: transparent;
+}
 
 .btn:hover,
 .btn:active{
