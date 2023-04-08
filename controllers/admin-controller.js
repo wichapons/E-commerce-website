@@ -8,7 +8,10 @@ function getNewProduct(req,res){
 }
 
 function createNewProduct(req,res){
-    res.render('admin/products/new-product')
+    
+
+
+    res.redirect('/admin/products')
 }
 
 module.exports= {
