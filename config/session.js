@@ -20,7 +20,7 @@ function createSessionConfig(){
         saveUninitialized:false, //indicates whether a session should be created even if it is not modified during the request.
         store: createSessionOnMongoDb(),
         cookie:{
-            maxAge: 60*10*1000// cookie expires in 10mins 
+            maxAge: 60*100*1000// cookie expires in 100mins 
         }
     };
 }
