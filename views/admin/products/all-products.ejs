@@ -7,10 +7,19 @@
         <main>
             <h1> All products (admin)</h1>
             <section>
-                <h2>Manage your product</h2>
+                <h2 >Manage your product <%= products.image %></h2>
             </section>
             <section>
-                <p> <a href="/admin/products/add" class="btn">Add new product</a> </p>
+                <p> <a href="/admin/products/add" class="btn btn-warning btn-sm">Add new product</a> </p>
+            </section>
+            <section>
+                <ul>
+                    <% for (const product of products){ %>
+                    <li>
+                        <%- include('includes/product-item',{product:product}) %>
+                    </li>
+                    <%} %>
+                </ul>
             </section>
         </main>
     </body>
