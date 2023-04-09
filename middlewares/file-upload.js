@@ -11,6 +11,7 @@ const upload = multer({
     })
 });
 
-const multerConfig =  upload.single('productImage') // find the field named "productImage" in the submitted form
 
+
+const multerConfig =  upload.single('image') // find the field named "productImage" in the submitted form
 module.exports = multerConfig;
