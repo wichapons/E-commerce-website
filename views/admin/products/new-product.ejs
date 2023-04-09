@@ -11,25 +11,25 @@
                     <input type="text" id="input" name="title" required>
                 </p>
                 <p>
-                    <label for="productImage">Product image</label>
-                    <input type="file" id="productImage" name="productImage" accept=".png,.jpg,jpeg">
+                    <label for="image">Product image</label>
+                    <input type="file" id="image" name="image" accept=".png,.jpg,jpeg" required>
                 </p>
                 <p>
                     <label for="productSummary">Product Summary</label>
-                    <input type="text" id="productSummary" name="productSummary" maxlength="255" required >
+                    <input type="text" id="productSummary" name="summary" maxlength="255" required >
                 </p>
                 <p>
                     <label for="productPrice">Price</label>
-                    <input type="text" id="productPrice" name="productPrice" min="0.01" step="1" required >
+                    <input type="text" id="productPrice" name="price" min="0.01" step="1" required >
                 </p>
                 <p>
                     <label for="productDescription">Product description</label>
-                    <textarea id="productDescription" name="productDescription" cols="30" rows="6" required></textarea>
+                    <textarea id="productDescription" name="description" cols="30" rows="6" required></textarea>
                 </p>
 
                 <p>
-                    <button type="reset" class="btn reset-btn ">Reset</button>
-                    <button class="btn">Submit</button>
+                    <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                    <button class="btn btn-warning btn-sm">Submit</button>
                 </p>
             </form>
 
