@@ -1,8 +1,14 @@
 <article class="product-item">
-    <img src="<%= product.imageUrl %>" alt="<%= product.imageName %>">
-    <h2> <%= product.title %> </h2>
-    <div>
+    <div class="product-image">
+        <img src="<%= product.imageUrl %>" class="" alt="<%= product.imageName %>">
+    </div>
+
+    <div class="product-text">
+        <h2> <%= product.title %> </h2>
+        <div class="product-btn">
         <a href="/admin/products/<%=product.id%>" class="btn btn-warning btn-sm" >View & Edit</a>
         <a href="" class="btn btn-danger btn-sm" >Delete</a>
+        </div>
+        
     </div>
 </article>
