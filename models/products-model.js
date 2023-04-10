@@ -9,8 +9,8 @@ class Product{
         this.description = productData.description;
         //Product images
         this.imageName = productData.imageName;
-        this.imagePath = `/product-data/image/${productData.imageName}`;
-        this.imageUrl = `/products/image/${productData.imageName}`;
+        this.imagePath = `/product-data/image/${productData.imageName}`; //path for save the file
+        this.imageUrl = `/products/image/${productData.imageName}`; //URL for frontend preventing user to see all of the file image folder
         if(productData._id){
             this.id = productData._id.toString();
         }   
