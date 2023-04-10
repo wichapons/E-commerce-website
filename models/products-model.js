@@ -1,4 +1,5 @@
-const db = require('../database/database')
+const db = require('../database/database');
+const mongodb = require('mongodb');
 
 class Product{
     constructor(productData){
@@ -38,6 +39,27 @@ class Product{
             return new Product(productDoc);
         });
     }
+
+    static async findUserID(productID){
+
+        //check productID isValid
+        let productData;
+        try{
+            const productId = new mongodb.ObjectId(productID);
+            productData = await db.getDb().collection('products').findOne({_id:productId});
+        } catch(err){
+            throw new Error('productID is not invalid cannot convert to objectID in mongoDB:'+err)
+        }
+        
+        //check productData is found or not
+        if(!productData){
+            const error = new Error('ProductID not found on the database');
+            throw error;
+        }
+        return productData;
+    }
+
+
 }
 
 
