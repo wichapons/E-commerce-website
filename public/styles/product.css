@@ -1,0 +1,46 @@
+.img-thumbnail{
+    background: rgb(94, 76, 48);
+    border: 0px;
+    padding: 0.5px;
+}
+
+.product-item{
+    border-radius: 7px;
+    text-align: center;
+    background-color: rgb(8, 8, 8);
+    overflow: hidden;
+    margin-bottom: 1rem;
+
+}
+.product-item img{
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.product-text{
+    padding: 0.2rem;
+}   
+
+.product-text h2{
+    font-size: 1.3rem;
+    margin: 0.5rem;
+}  
+
+.product-text h2{
+    font-size: 1.3rem;
+    margin: 0.5rem;
+}   
+
+.product-btn a{
+    margin-right:1rem ;
+    margin-bottom: 0.4rem;
+}
+
+#product-grid{
+    margin: 1rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
+    gap: 1rem
+
+}
