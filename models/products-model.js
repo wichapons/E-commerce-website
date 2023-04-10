@@ -10,8 +10,7 @@ class Product{
         this.description = productData.description;
         //Product images
         this.imageName = productData.imageName;
-        this.imagePath = `/product-data/image/${productData.imageName}`; //path for save the file
-        this.imageUrl = `/products/image/${productData.imageName}`; //URL for frontend preventing user to see all of the file image folder
+        this.updateImagePathAndUrl();
         if(productData._id){
             this.id = productData._id.toString();
         }   
@@ -20,14 +19,28 @@ class Product{
 
     async save(){
         //save product data to database
-
-        await db.getDb().collection('products').insertOne({
+        let productDetails = {
             title: this.title,
             summary: this.summary,
             price: this.price,
             description: this.description,
             imageName: this.imageName
-        });
+        }
+
+        //if has an ID this means user is trying to update the product details
+        if(this.id){
+            //check if user upload new image or not 
+            if(!this.imageName){
+                console.log('image not found, deleting productDetails.image ');
+                delete productDetails.imageName;  //if not delete the productDetails.image key-value pair to prevent undefine value
+            }
+            console.log('after delete productDetails.image');
+            console.log(Object.entries(productDetails));
+            await db.getDb().collection('products').updateOne({_id:new mongodb.ObjectId(this.id)},{$set:productDetails});
+        } else{
+            await db.getDb().collection('products').insertOne(productDetails);
+        }
+
     }
 
     static async findAll(){
@@ -56,9 +69,18 @@ class Product{
             const error = new Error('ProductID not found on the database');
             throw error;
         }
-        return productData;
+        return new Product(productData);
     }
 
+    async updateImage(newImage){
+        this.imageName = newImage;
+        this.updateImagePathAndUrl();
+    }
+
+    async updateImagePathAndUrl(){
+        this.imagePath = `/product-data/image/${this.imageName}`; //path for save the file
+        this.imageUrl = `/products/image/${this.imageName}`; //URL for frontend preventing user to see all of the file image folder
+    }
 
 }
 
