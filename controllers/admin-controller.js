@@ -41,11 +41,26 @@ async function getUpdateProduct(req,res){
     }catch(err){
         throw new Error('cannot get the product detail. Error msg: '+err)
     }
-    
 }
 
-function updateProduct(){
-
+async function updateProduct(req,res,next){
+    const product = new Product({
+        ...req.body,
+        _id:req.params.id
+    })
+    //check if user upload a new image
+    
+    if(req.file){
+        product.updateImage(req.file.filename);
+    };
+    console.log('user does not upload a new image');
+    try{
+        await product.save();
+    }catch(err){
+        next(err);
+        return;
+    };
+    res.redirect('/admin/products')
 }
 
 module.exports= {
