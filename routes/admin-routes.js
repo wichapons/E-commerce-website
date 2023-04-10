@@ -7,5 +7,7 @@ const router = express.Router();
 router.get('/products',adminController.getAllProducts);
 router.get('/products/add',adminController.getNewProduct);
 router.post('/addproducts',imageUploadMiddleware,adminController.createNewProduct);
+router.get('/products/:id',adminController.getUpdateProduct)
+router.post('/products/:id',adminController.updateProduct)
 
 module.exports = router;
