@@ -1,0 +1,27 @@
+<form action="<%= submitPath %>?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
+    <p>
+        <label for="input">Title</label>
+        <input type="text" id="input" name="title" value="<%= productDetails.title %>" required> 
+    </p>
+    <p>
+        <label for="image">Product image</label>
+        <input type="file" id="image" name="image" accept=".png,.jpg,jpeg"  required>
+    </p>
+    <p>
+        <label for="productSummary">Product Summary</label>
+        <input type="text" id="productSummary" name="summary" maxlength="255" value="<%= productDetails.summary %>" required >
+    </p>
+    <p>
+        <label for="productPrice">Price</label>
+        <input type="text" id="productPrice" name="price" min="0.01" step="1" value="<%= productDetails.price %>" required >
+    </p>
+    <p>
+        <label for="productDescription">Product description</label>
+        <textarea id="productDescription" name="description" cols="30" rows="6" required><%= productDetails.description %></textarea>
+    </p>
+
+    <p>
+        <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+        <button class="btn btn-warning btn-sm">Submit</button>
+    </p>
+</form>
