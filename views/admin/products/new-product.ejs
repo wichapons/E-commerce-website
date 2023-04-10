@@ -5,7 +5,13 @@
         <%- include('../../shared/includes/header') %>
         <main>
             <h1> New products</h1>
-            <%- include('includes/product-form',{submitPath:'/admin/products',productDetails:{ title:'',summary:'',price:'',description:''}}) %>
+            <%- include('includes/product-form',{submitPath:'/admin/products',productDetails:{
+                 title:'',
+                 summary:'',
+                 price:'',
+                 description:''},
+                 imageRequired:true
+                 }) %>
         </main>
     </body>
 <%- include('../../shared/includes/footer') %>
