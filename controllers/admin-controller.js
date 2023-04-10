@@ -34,8 +34,24 @@ async function createNewProduct(req,res){
     res.redirect('/admin/products')
 }
 
+async function getUpdateProduct(req,res){
+    try{
+        productDetails = await Product.findUserID(req.params.id);
+        res.render('admin/products/edit-product',{productDetails:productDetails});
+    }catch(err){
+        throw new Error('cannot get the product detail. Error msg: '+err)
+    }
+    
+}
+
+function updateProduct(){
+
+}
+
 module.exports= {
     getNewProduct:getNewProduct,
     getAllProducts:getAllProducts,
-    createNewProduct:createNewProduct
+    createNewProduct:createNewProduct,
+    getUpdateProduct:getUpdateProduct,
+    updateProduct:updateProduct
 }
