@@ -1,11 +1,12 @@
 <%- include('../../shared/includes/head',{pageTitle:'New Products'}) %>
 <link rel="stylesheet" href="/styles/form.css">
+<script src="/scripts/uploaded-image-preview.js" defer></script>
 </head>
     <body>
         <%- include('../../shared/includes/header') %>
         <main>
             <h1> New products</h1>
-            <%- include('includes/product-form',{submitPath:'/admin/products',productDetails:{
+            <%- include('includes/product-form',{submitPath:'/admin/addproducts',productDetails:{
                  title:'',
                  summary:'',
                  price:'',
