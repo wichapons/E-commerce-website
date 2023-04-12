@@ -3,12 +3,16 @@
         <label for="input">Title</label>
         <input type="text" id="input" name="title" value="<%= productDetails.title %>" required> 
     </p>
-    <p>
-        <label for="image">Product image</label>
-        <input type="file" id="image" name="image" accept=".png,.jpg,jpeg" <% if(imageRequired){ %>
-            required
-        <%} %> >
-    </p>
+
+    <div id="uploaded-image">
+        <p>
+            <label for="image">Product image</label>
+            <input type="file" id="image" name="image" accept=".png,.jpg,jpeg" <% if(imageRequired){ %> required<%} %> >
+        </p>
+        <img src="" alt="preview image">
+    </div>
+
+
     <p>
         <label for="productSummary">Product Summary</label>
         <input type="text" id="productSummary" name="summary" maxlength="255" value="<%= productDetails.summary %>" required >
