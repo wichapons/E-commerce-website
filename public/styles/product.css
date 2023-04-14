@@ -31,10 +31,12 @@
     font-size: 1.3rem;
     margin: 0.5rem;
 }   
+.product-btn{
+    margin-bottom: 0.5rem;
+}
 
 .product-btn a{
     margin-right:1rem ;
-    margin-bottom: 0.4rem;
 }
 
 #product-grid{
