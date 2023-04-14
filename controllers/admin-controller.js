@@ -66,12 +66,12 @@ async function updateProduct(req,res,next){
 async function deleteProduct(req,res,next){
     let product;
     try{
-        product = await new Product.findUserID(req.params.id);
-        await product.removeProduct() //call remove product method on product model
+        product = await Product.findUserID(req.params.id);
+        await product.removeProduct(); //call remove product method on product model
     }catch(err){
-        return next(err) //pass the err to next middleware handlers
+        return next(err); //pass the err to next middleware handlers
     }
-    res.redirect('/admin/products')
+    res.json({message:'Product is deleted successfully!'});
 }
 
 module.exports= {
