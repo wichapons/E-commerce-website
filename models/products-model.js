@@ -82,6 +82,11 @@ class Product{
         this.imageUrl = `/products/image/${this.imageName}`; //URL for frontend preventing user to see all of the file image folder
     }
 
+    async removeProduct(){
+        const productId = new mongodb.ObjectId(this.id);
+        return await db.getDb.collection('products').deleteOne({id:productId});
+    }
+
 }
 
 
