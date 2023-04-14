@@ -63,10 +63,22 @@ async function updateProduct(req,res,next){
     res.redirect('/admin/products')
 }
 
+async function deleteProduct(req,res,next){
+    let product;
+    try{
+        product = await new Product.findUserID(req.params.id);
+        await product.removeProduct() //call remove product method on product model
+    }catch(err){
+        return next(err) //pass the err to next middleware handlers
+    }
+    res.redirect('/admin/products')
+}
+
 module.exports= {
     getNewProduct:getNewProduct,
     getAllProducts:getAllProducts,
     createNewProduct:createNewProduct,
     getUpdateProduct:getUpdateProduct,
-    updateProduct:updateProduct
+    updateProduct:updateProduct,
+    deleteProduct:deleteProduct
 }
