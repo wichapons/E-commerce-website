@@ -84,7 +84,7 @@ class Product{
 
     async removeProduct(){
         const productId = new mongodb.ObjectId(this.id);
-        return await db.getDb.collection('products').deleteOne({id:productId});
+        return await db.getDb().collection('products').deleteOne({_id:productId});
     }
 
 }
