@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth-route');
 const productRoutes = require('./routes/product-route');
 const homeRoutes = require('./routes/home-route');
 const adminRoutes = require('./routes/admin-routes');
+const errorRoutes = require('./routes/error-route');
 
 //cookies and session
 const expressSession = require('express-session');
@@ -24,7 +25,10 @@ app.use(express.urlencoded({extended:false})); // sets up middleware in an Expre
 const errorHandleMiddleware = require('./middlewares/error-handle');
 
 //checkIsAuth middleware
-const checkIsAuth = require('./middlewares/checkIsAuth')
+const checkIsAuth = require('./middlewares/checkIsAuth');
+
+//authorizedRoute for checking whether is admin or not
+const authorizedRoute = require('./middlewares/authorized-route');
 
 //db
 const db = require('./database/database');
@@ -49,9 +53,12 @@ app.use(addCsrfTokenMiddleware);
 app.use(checkIsAuth);
 
 //route
+
 app.use(authRoutes); // add middleware for incoming request
 app.use(productRoutes);
 app.use(homeRoutes);
+app.use(errorRoutes);
+app.use(authorizedRoute); //add middleware for checking isAdmin before rendering admin page.
 app.use('/admin',adminRoutes); // will only be executed for requests that start with the /admin path.
 
 
