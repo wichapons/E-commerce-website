@@ -11,7 +11,6 @@ async function getAllProducts(req,res,next){
         next(err); //send to error handler middleware
         return;
     }
-
 }
 function getNewProduct(req,res){
     res.render('admin/products/new-product')
@@ -34,12 +33,14 @@ async function createNewProduct(req,res){
     res.redirect('/admin/products')
 }
 
-async function getUpdateProduct(req,res){
+async function getUpdateProduct(req,res,next){
     try{
         productDetails = await Product.findUserID(req.params.id);
         res.render('admin/products/edit-product',{productDetails:productDetails});
     }catch(err){
-        throw new Error('cannot get the product detail. Error msg: '+err)
+        err.code = 404,
+        console.log('cannot get the product detail. Error msg: '+err);
+        next(err);
     }
 }
 
