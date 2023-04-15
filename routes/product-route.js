@@ -1,10 +1,7 @@
-const express = require('express');  //make express available in this fil
+const express = require('express');  //make express available in this file
+const productController = require('../controllers/products-controller');
 
 const router = express.Router();
 
-
-router.get('/products',(req,res)=>{
-    res.render('customer/products/all-products');
-});
-
+router.get('/products',productController.getAllProducts);
 module.exports = router;
