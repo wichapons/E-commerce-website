@@ -3,10 +3,10 @@ function authorizedRoute(req,res,next){
         res.redirect('/401')
         return;
     }
-    if(req.path.startWith('/admin') && !res.locals.isAdmin ){
+    if(req.path.startsWith('/admin') && !res.locals.isAdmin ){
         return res.redirect('/403');
     }
-
+    
     next();
 }
 module.exports = authorizedRoute;
