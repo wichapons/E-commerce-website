@@ -79,7 +79,7 @@ class Product{
 
     async updateImagePathAndUrl(){
         this.imagePath = `/product-data/image/${this.imageName}`; //path for save the file
-        this.imageUrl = `/products/image/${this.imageName}`; //URL for frontend preventing user to see all of the file image folder
+        this.imageUrl = `/products/image/${this.imageName}`; //URL for frontend preventing user to see all of the file image folder. Using app.use static productdata folder in the app.js to filter only request with /products will have an access to the product-data folder
     }
 
     async removeProduct(){
