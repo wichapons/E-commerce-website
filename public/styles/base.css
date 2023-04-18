@@ -68,3 +68,12 @@ a{
 .alert p{
     margin: 0.5rem auto;
 }
+
+.badge{
+    margin-left: 0.25rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 10rem;
+    background-color: goldenrod;
+    color: white;
+    pointer-events: none;
+}
