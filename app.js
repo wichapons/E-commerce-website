@@ -27,6 +27,9 @@ const errorHandleMiddleware = require('./middlewares/error-handle');
 //checkIsAuth middleware
 const checkIsAuth = require('./middlewares/checkIsAuth');
 
+//Cart items middleware
+const cartMiddleware = require('./middlewares/cart');
+
 //authorizedRoute for checking whether is admin or not
 const authorizedRoute = require('./middlewares/authorized-route');
 
@@ -43,17 +46,18 @@ app.use('/products',express.static('product-data')); //only request starting wit
 
 
 //cookies and session
-//const sessionConfig = createSessionConfig();
 app.use(expressSession(createSessionConfig()));
 
 //csrf protection
 app.use(csrf()); // put CSRF protection middleware before any routes that handle user input or requests
 app.use(addCsrfTokenMiddleware);
+
+// add item to cart functionality
+app.use(cartMiddleware);
 //check is authenticated
 app.use(checkIsAuth);
 
 //route
-
 app.use(authRoutes); // add middleware for incoming request
 app.use(productRoutes);
 app.use(homeRoutes);
