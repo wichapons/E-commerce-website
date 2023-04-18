@@ -1,0 +1,1 @@
+Object.entries(); // get the keyvalue pair of the object
