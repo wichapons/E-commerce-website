@@ -9,6 +9,7 @@ const productRoutes = require('./routes/product-route');
 const homeRoutes = require('./routes/home-route');
 const adminRoutes = require('./routes/admin-routes');
 const errorRoutes = require('./routes/error-route');
+const cartRoutes = require('./routes/cart-routes');
 
 //cookies and session
 const expressSession = require('express-session');
@@ -20,6 +21,10 @@ const addCsrfTokenMiddleware = require('./middlewares/csrf-token');
 
 //urlencoded middleware
 app.use(express.urlencoded({extended:false})); // sets up middleware in an Express application to handle URL-encoded form data.
+
+//json middleware: parses incoming request bodies with JSON payloads.
+app.use(express.json());
+
 
 //error handle middleware
 const errorHandleMiddleware = require('./middlewares/error-handle');
@@ -58,6 +63,7 @@ app.use(cartMiddleware);
 app.use(checkIsAuth);
 
 //route
+app.use('cart',cartRoutes);
 app.use(authRoutes); // add middleware for incoming request
 app.use(productRoutes);
 app.use(homeRoutes);
