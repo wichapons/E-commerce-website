@@ -25,7 +25,29 @@ async function addCartItem(req,res,next){
     })
 }
 
+async function updateCartItem(req,res,next){
+    const cart = res.locals.cart;
+    try{
+        const updatedItemData = await cart.updateItem(req.body.productID,req.body.quantity); //return of this funciton will get updatedItemPrice from cart model
+        req.session.cart = cart;
+        res.json({
+            message:'Item updated',
+            updateCartData:{
+                newTotalQuantity:cart.totalQuantity,
+                newtotalPrice:cart.totalPrice,
+                updatedItemPrice:updatedItemData.updatedItemPrice
+        }
+    })
+    }catch(err){
+        console.log(err);
+        next(err);
+        return;
+    }
+    
+}
+
 module.exports={
     addCartItem:addCartItem,
-    renderCartPage:renderCartPage
+    renderCartPage:renderCartPage,
+    updateCartItem:updateCartItem
 }
