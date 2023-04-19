@@ -1,9 +1,11 @@
 const Product = require('../models/products-model')
 
-async function addCartItem(req,res){
+async function addCartItem(req,res,next){
     let product;
+
+
     try{
-    product = await Product.findUserID(req.body.productId)
+    product = await Product.findUserID(req.body.productID)
     }catch(err){
         next(err);
         return;
