@@ -13,11 +13,11 @@ class Cart {
         }
         //checking if user add the same product to the cart. This will only increase the quantity of that product.
         for (let i=0;i<this.items.length;i++){
-            const item = this.item[i];
+            const item = this.items[i];
             if(item.product.id === product.id){
                 cartItem.quantity = cartItem.quantity +1;
                 cartItem.totalPrice = cartItem.totalPrice + product.price;
-                this.tiems[i] = cartItem;
+                this.items[i] = cartItem;
                 this.totalQuantity++
                 this.totalPrice = this.totalPrice+product.price
                 return;
