@@ -28,6 +28,30 @@ class Cart {
         this.totalQuantity++;
         this.totalPrice = this.totalPrice + product.price;
     }
+
+    updateItem(productID,newQuantity){
+        for (let i=0;i<this.items.length;i++){
+            const item = this.items[i];
+            if(item.product.id === productID && newQuantity>=0){
+                const cartItem = item //copy item to cart. in general it's risky to modify objects (working with references instead of copies) which might have undesired effects in other places of the app.
+                cartItem.quantity = newQuantity;
+                cartItem.totalPrice = newQuantity * product.price;
+                this.items[i] = cartItem;
+
+                const quantityChange = newQuantity - item.quantity; // return positive if increase otherwise decrease
+
+                this.totalQuantity = this.totalQuantity + quantityChange ;
+                this.totalPrice = this.totalPrice + quantityChange * product.price;
+                return {updatedItemPrice: cartItem.totalPrice}; 
+            }  else if(item.product.id === productID && newQuantity<=0){ //if user input quantity<0 delete that item
+                this.items.splice(i,1);
+                this.totalQuantity = this.totalQuantity - item.quantity;
+                this.totalPrice = this.totalPrice - item.totalPrice;
+                return {updatedItemPrice: 0};
+            }
+        }
+    }
+
 }
 
 module.exports = Cart;
