@@ -63,8 +63,8 @@ app.use(cartMiddleware);
 app.use(checkIsAuth);
 
 //route
-app.use('cart',cartRoutes);
-app.use(authRoutes); // add middleware for incoming request
+app.use('/cart',cartRoutes);
+app.use( authRoutes); // add middleware for incoming request
 app.use(productRoutes);
 app.use(homeRoutes);
 app.use(errorRoutes);
