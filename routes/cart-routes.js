@@ -6,5 +6,6 @@ const cartController = require('../controllers/cart-controller')
 
 router.get('/',cartController.renderCartPage);
 router.post('/items',cartController.addCartItem);
+router.patch('/items',cartController.updateCartItem) //update item data 
 
 module.exports = router;
