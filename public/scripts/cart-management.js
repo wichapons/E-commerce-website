@@ -22,7 +22,6 @@ async function addToCart(){
         });
     } catch(err){
         console.log(err);
-        next(err);
     }
 
     if (!response.ok){
