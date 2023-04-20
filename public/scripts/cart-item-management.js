@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 const cartItemUpdateFormElements = document.querySelectorAll('.cart-item-management');
 
 async function updateCartItem(event){
@@ -8,9 +6,9 @@ async function updateCartItem(event){
     const productID = form.dataset.productid;
     const csrfToken = form.dataset.csrftoken;
     const quantity = form.querySelector('input[type="number"]').value;
-
+    let response;
     try{
-        const response = await fetch('/cart/item',{
+            response = await fetch('/cart/items',{
             method:'PATCH',
             body:JSON.stringify({
                 productID:productID,
@@ -21,21 +19,31 @@ async function updateCartItem(event){
                 'Content-Type':'application/json'
             }
         });
-    }catch(err){
+    }catch(response){
         alert('something went wrong')
-        console.log(err);
+        console.log(response);
         return;
     }
     if (!response.ok){
         alert('something went wrong')
-        console.log(err);
+        console.log(response);
         return;
     }else{
-        const responseData = await response.json();
-    }
-
-
-    
+        
+        const responseData = await response.json(); // get the return from ajax req which is total price of that item
+        console.log('fetch successfully, data:');
+        console.log(responseData);
+        
+        //total price of that item
+        const cartItemTotalPriceElement = document.querySelector('.cart-item .cart-item-total-price') 
+        cartItemTotalPriceElement.textContent = responseData.updateCartData.updatedItemPrice.toFixed(2);
+        // total price of all item
+        const cartAllItemTotalPriceElement = document.querySelector('#cart-total .cart-total-price'); 
+        cartAllItemTotalPriceElement.textContent = responseData.updateCartData.newtotalPrice.toFixed(2);
+        // total quantity at badge  
+        const cartBadgeElement = document.querySelector('.nav-items .badge');
+        cartBadgeElement.textContent = responseData.updateCartData.newTotalQuantity;
+    }  
 }
 
 
