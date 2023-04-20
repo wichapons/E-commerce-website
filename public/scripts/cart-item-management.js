@@ -33,10 +33,15 @@ async function updateCartItem(event){
         const responseData = await response.json(); // get the return from ajax req which is total price of that item
         console.log('fetch successfully, data:');
         console.log(responseData);
-        
-        //total price of that item
+
+        if (responseData.updateCartData.updatedItemPrice === 0){
+            form.parentElement.parentElement.remove(); //remove li element
+        }else{
+            //total price of that item (only called item)
         const cartItemTotalPriceElement = document.querySelector('.cart-item .cart-item-total-price') 
         cartItemTotalPriceElement.textContent = responseData.updateCartData.updatedItemPrice.toFixed(2);
+        }
+    
         // total price of all item
         const cartAllItemTotalPriceElement = document.querySelector('#cart-total .cart-total-price'); 
         cartAllItemTotalPriceElement.textContent = responseData.updateCartData.newtotalPrice.toFixed(2);
