@@ -33,7 +33,7 @@ class Cart {
     updateItem(productID,newQuantity){
         for (let i=0;i<this.items.length;i++){
             const item = this.items[i];
-            if(item.product.id === productID && newQuantity>=0){
+            if(item.product.id === productID && newQuantity>0){
                 const cartItem = {...item} //creates a shallow copy of the item object and assigns it to cartItem. This means that any modifications made to cartItem will not affect the original item object. in general it's risky to modify objects (working with references instead of copies) which might have undesired effects in other places of the app.
                 cartItem.quantity = newQuantity;
                 cartItem.totalPrice = newQuantity * item.product.price;
