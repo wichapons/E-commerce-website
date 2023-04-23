@@ -37,6 +37,11 @@
     color: coral;
 }
 
+#cart-total #login-first {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
 @media (min-width:48rem) {
     .cart-item{
         display: flex;
