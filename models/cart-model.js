@@ -15,7 +15,7 @@ class Cart {
         for (let i=0;i<this.items.length;i++){ //loop in items in the cart
             const item = this.items[i];
             if(item.product.id === product.id){ // if found the existing product increase the amount.
-                cartItem.quantity = item.quantity +1;
+                cartItem.quantity = parseInt(item.quantity) +1;
                 cartItem.totalPrice = item.totalPrice + item.product.price;
                 this.items[i] = cartItem;
                 this.totalQuantity++
