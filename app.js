@@ -10,6 +10,7 @@ const homeRoutes = require('./routes/home-route');
 const adminRoutes = require('./routes/admin-routes');
 const errorRoutes = require('./routes/error-route');
 const cartRoutes = require('./routes/cart-routes');
+const orderRoutes = require('./routes/order-route')
 
 //cookies and session
 const expressSession = require('express-session');
@@ -68,8 +69,9 @@ app.use( authRoutes); // add middleware for incoming request
 app.use(productRoutes);
 app.use(homeRoutes);
 app.use(errorRoutes);
-app.use(authorizedRoute); //add middleware for checking isAdmin before rendering admin page.
+app.use(authorizedRoute); //add middleware for checking authorization before rendering route below.
 app.use('/admin',adminRoutes); // will only be executed for requests that start with the /admin path.
+app.use('/orders',orderRoutes); // n
 
 
 //error handle
