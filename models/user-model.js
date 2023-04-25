@@ -1,5 +1,6 @@
-const db = require('../database/database')
-const bcrypt = require('bcrypt')
+const db = require('../database/database');
+const bcrypt = require('bcrypt');
+const mongodb = require('mongodb')
 
 class User {
     constructor(email,password,fullname,street,postal,city){
@@ -15,6 +16,11 @@ class User {
 
     async getUserDataByEmail(){
        return await db.getDb().collection('users').findOne({email:this.email});
+    }
+
+    static async findUserById(userId){
+        //get user detail from user id
+        return await db.getDb().collection('users').findOne({_id: new mongodb.ObjectId(userId)},{projection: {password:0}}); //exclude password from get data from DB
     }
 
     async verifyPassword(hashedPassword){
