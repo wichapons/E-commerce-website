@@ -2,8 +2,15 @@ const e = require('express');
 const Order = require('../models/orders-model');
 const User = require('../models/user-model');
 
-function getOrderPage(req,res){
-    res.render('customer/orders/all-orders');
+async function getOrderPage(req,res,next){
+    try {
+        const orders = await Order.findAllOrderForUser(res.locals.userID);
+        console.log('order details: ');
+        Object.entries(orders);
+        res.render('customer/orders/all-orders', {orders: orders});
+      } catch (error) {
+        next(error);
+      }
 }
 
 async function addOrder(req,res,next){
