@@ -52,6 +52,20 @@ class Product{
             return new Product(productDoc);
         });
     }
+    //find multiple product that match with the productID in the order page
+    static async findMultiple(ids) {
+        //covert all id in array to mongodb object
+        const productIds = ids.map(function(id) {
+          return new mongodb.ObjectId(id);
+        })
+        
+        const products = await db.getDb().collection('products').find({ _id: { $in: productIds } }).toArray(); 
+
+        //convert array of products detail to array of object based on Product model
+        return products.map(function (productDocument) {
+          return new Product(productDocument);
+        });
+      }
 
     static async findUserID(productID){
 
