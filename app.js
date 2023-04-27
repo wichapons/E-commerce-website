@@ -36,6 +36,9 @@ const checkIsAuth = require('./middlewares/checkIsAuth');
 //Cart items middleware
 const cartMiddleware = require('./middlewares/cart');
 
+//Update Cart Prices Middleware
+const updateCartPricesMiddleware = require('./middlewares/update-cart-prices');
+
 //authorizedRoute for checking whether is admin or not
 const authorizedRoute = require('./middlewares/authorized-route');
 
@@ -60,6 +63,8 @@ app.use(addCsrfTokenMiddleware);
 
 // add item to cart functionality
 app.use(cartMiddleware);
+// update cart price
+app.use(updateCartPricesMiddleware);
 //check is authenticated
 app.use(checkIsAuth);
 
