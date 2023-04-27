@@ -1,12 +1,10 @@
-const updateOrderFormElements = document.querySelectorAll(
-    '.order-actions form'
-  );
+const updateOrderFormElements = document.querySelectorAll('.order-actions form'); //select all .order-actions
   
-  async function updateOrder(event) {
+  async function updateOrder(event) { //update order status
     event.preventDefault();
     const form = event.target;
   
-    const formData = new FormData(form);
+    const formData = new FormData(form); //built-in form data
     const newStatus = formData.get('status');
     const orderId = formData.get('orderid');
     const csrfToken = formData.get('_csrf');
