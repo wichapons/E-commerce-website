@@ -77,9 +77,10 @@ class Cart {
           cartItem.totalPrice = cartItem.quantity * cartItem.product.price;
         }
 
+        //remove item that match with deletableCartItemProductIds for the cart
         if (deletableCartItemProductIds.length > 0) { 
           this.items = this.items.filter(function (item) {
-            return deletableCartItemProductIds.indexOf(item.product.id) < 0;
+            return deletableCartItemProductIds.indexOf(item.product.id) < 0; //check index number of that product id in array. If deletableCartItemProductIds.indexOf(item.product.id) return -1 mean not found if return 1 it will filter out
           });
         }
     
