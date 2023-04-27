@@ -28,7 +28,7 @@ async function addCartItem(req,res,next){
 async function updateCartItem(req,res,next){
     const cart = res.locals.cart;
     try{
-        const updatedItemData = await cart.updateItem(req.body.productID,req.body.quantity); //return of this funciton will get updatedItemPrice from cart model
+        const updatedItemData = await cart.updateItem(req.body.productID,parseInt(req.body.quantity)); //return of this funciton will get updatedItemPrice from cart model
         req.session.cart = cart;
         res.json({
             message:'Item updated',
@@ -43,8 +43,10 @@ async function updateCartItem(req,res,next){
         next(err);
         return;
     }
-    
 }
+
+    
+
 
 module.exports={
     addCartItem:addCartItem,
