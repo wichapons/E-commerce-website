@@ -26,9 +26,9 @@ app.use(express.urlencoded({extended:false})); // sets up middleware in an Expre
 //json middleware: parses incoming request bodies with JSON payloads.
 app.use(express.json());
 
-
 //error handle middleware
 const errorHandleMiddleware = require('./middlewares/error-handle');
+const pageNotFound = require('./middlewares/page-not-found');
 
 //checkIsAuth middleware
 const checkIsAuth = require('./middlewares/checkIsAuth');
@@ -74,9 +74,10 @@ app.use( authRoutes); // add middleware for incoming request
 app.use(productRoutes);
 app.use(homeRoutes);
 app.use(errorRoutes);
-app.use(authorizedRoute); //add middleware for checking authorization before rendering route below.
-app.use('/admin',adminRoutes); // will only be executed for requests that start with the /admin path.
-app.use('/orders',orderRoutes); // n
+app.use('/admin',authorizedRoute,adminRoutes); //add middleware for checking authorization before rendering route below. // will only be executed for requests that start with the /admin path.
+app.use('/orders',authorizedRoute,orderRoutes);
+
+app.use(pageNotFound);
 
 
 //error handle
