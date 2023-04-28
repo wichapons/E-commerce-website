@@ -46,11 +46,14 @@ async function updateCartItem(event){
         const cartAllItemTotalPriceElement = document.querySelector('#cart-total .cart-total-price'); 
         cartAllItemTotalPriceElement.textContent = responseData.updateCartData.newtotalPrice.toFixed(2);
         // total quantity at badge  
-        const cartBadgeElement = document.querySelector('.nav-items .badge');
-        cartBadgeElement.textContent = responseData.updateCartData.newTotalQuantity;
+        const cartBadgeElements = document.querySelectorAll('.nav-items .badge');
+
+        for(const cartBadgeElement of cartBadgeElements){
+            cartBadgeElement.textContent = responseData.updateCartData.newTotalQuantity;
+        }
+        
     }  
 }
-
 
 for (const FormElement of cartItemUpdateFormElements){
     FormElement.addEventListener('submit',updateCartItem)

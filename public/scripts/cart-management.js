@@ -1,5 +1,5 @@
 const addToCartButtonElement = document.querySelector('#product-details button');
-const cartBadgeElement = document.querySelector('.nav-items .badge');
+const cartBadgeElements = document.querySelectorAll('.nav-items .badge'); //ALL to include another badge class in mobile view
 
 
 async function addToCart(){
@@ -30,7 +30,12 @@ async function addToCart(){
         const responseData = await response.json(); //get the res.json from cart controller
         const newTotalQuantity = responseData.totalItem; 
         console.log('newTotalQuantity: '+newTotalQuantity);
-        cartBadgeElement.textContent = newTotalQuantity; //change number of item in carts 
+
+        //update all cartBadgeElement textContent
+        for(const cartBadgeElement of cartBadgeElements){
+            cartBadgeElement.textContent = newTotalQuantity; //change number of item in carts 
+        }
+        
     }
 
 
