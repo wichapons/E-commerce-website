@@ -38,7 +38,8 @@ async function updateCartItem(event){
             form.parentElement.parentElement.remove(); //remove li element
         }else{
             //total price of that item (only called item)
-        const cartItemTotalPriceElement = document.querySelector('.cart-item .cart-item-total-price') 
+        const cartItemTotalPriceElement = form.parentElement.querySelector('.cart-item .cart-item-total-price');
+        console.log(cartItemTotalPriceElement.textContent);
         cartItemTotalPriceElement.textContent = responseData.updateCartData.updatedItemPrice.toFixed(2);
         }
     
