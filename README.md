@@ -20,7 +20,7 @@ Browse the list of items for sale.
 Add items to the shopping cart.
 Checkout and purchase items in the shopping cart.
 
-##Technologies Used
+## Technologies Used
 
 JavaScript
 HTML
