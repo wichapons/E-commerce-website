@@ -29,5 +29,13 @@ MongoDB
 MVC (Model-View-Controller) method
 
 ## Installation
-run npm install // to install required packages
-run npm start // to start an application
+To install the required packages for running the application, run the following command in your terminal:
+```
+npm install 
+```
+
+To start the application, run the following command:
+```
+npm start 
+```
+This will start the server and make the website available for browsing at http://localhost:3000.
