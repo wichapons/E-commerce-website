@@ -17,13 +17,17 @@
 
             <div id="cart-total">
                 <p>Total: $<span class="cart-total-price"><%= locals.cart.totalPrice.toFixed(2) %></span></p>
-                <% if (locals.isAuth){  %>
+                <% if (!locals.isAuth){  %>
+                    <a href="/login"><p id="login-first">Please log in to purchase the products </p></a>
+                    <%}%>
+
+                <% if (locals.isAuth && locals.cart.totalQuantity>0){  %>
                     <form action="/orders" method="POST">
                         <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
                         <button class="btn btn-warning btn-sm">Buy Products</button>
                     </form>
                 <% } else{%>
-                     <a href="/login"><p id="login-first">Please log in to purchase the products </p></a>
+                     <p id="login-first"> Please add item in to cart. </p>
                     <%}%>
             </div>
         </main>
