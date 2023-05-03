@@ -1,5 +1,4 @@
 const Product = require('../models/products-model');
-const { get } = require('../routes/error-route');
 
 async function getAllProducts(req,res){
     try{
