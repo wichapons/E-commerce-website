@@ -97,7 +97,7 @@ if(process.env.SERVER_STATUS === 'prod'){
 }
 
 db.connectDb().then(()=>{
-    app.listen(3000);
+    app.listen(port);
     console.log(`server is now running on PORT ${port}`); 
 }).catch((err)=>{   //if error show log below
     console.log('cannot connect to the database');
