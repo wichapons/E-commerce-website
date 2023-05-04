@@ -9,6 +9,7 @@ let mongodbURL;
 if(process.env.SERVER_STATUS === 'prod'){
     console.log('Detected Production Enviroment, using MONGODB_API_KEY');
     mongodbURL = process.env.MONGODB_API_KEY;
+    console.log(process.env.MONGODB_API_KEY);
 }else{
     console.log('Detected Dev Enviroment, using mongodb://127.0.0.1:27017');
     mongodbURL = 'mongodb://127.0.0.1:27017';
