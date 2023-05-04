@@ -83,9 +83,22 @@ app.use(pageNotFound);
 //error handle
 app.use(errorHandleMiddleware);
 
+require('dotenv').config();
+let port;
+if(process.env.SERVER_STATUS === 'prod'){
+    if(process.env.PORT){
+        port = process.env.PORT;
+    }else{
+        console.log('cannot find PORT in .env, please check the configuration.');
+        port = 3000;
+    }
+}else{
+    port = 3000;
+}
+
 db.connectDb().then(()=>{
     app.listen(3000);
-    console.log('server is now running on http://localhost:3000/'); 
+    console.log(`server is now running on PORT ${port}`); 
 }).catch((err)=>{   //if error show log below
     console.log('cannot connect to the database');
     console.log(err);
