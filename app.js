@@ -69,10 +69,10 @@ app.use(updateCartPricesMiddleware);
 app.use(checkIsAuth);
 
 //route
+app.use(homeRoutes);
 app.use('/cart',cartRoutes);
 app.use( authRoutes); // add middleware for incoming request
 app.use(productRoutes);
-app.use(homeRoutes);
 app.use(errorRoutes);
 app.use('/admin',authorizedRoute,adminRoutes); //add middleware for checking authorization before rendering route below. // will only be executed for requests that start with the /admin path.
 app.use('/orders',authorizedRoute,orderRoutes);
@@ -96,6 +96,7 @@ if(process.env.SERVER_STATUS === 'prod'){
     port = 3000;
 }
 
+//connect to db
 db.connectDb().then(()=>{
     app.listen(port);
     console.log(`server is now running on PORT ${port}`); 
@@ -104,3 +105,5 @@ db.connectDb().then(()=>{
     console.log(err);
 })
 
+// Export the Express API
+module.exports = app;
