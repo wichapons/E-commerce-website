@@ -7,9 +7,11 @@ let database;
 let mongodbURL;
 
 if(process.env.SERVER_STATUS === 'prod'){
-    mongodbURL = process.env.MONGODB_API_KEY
+    console.log('Detected Production Enviroment, using MONGODB_API_KEY');
+    mongodbURL = process.env.MONGODB_API_KEY;
 }else{
-    mongodbURL = 'mongodb://127.0.0.1:27017'
+    console.log('Detected Dev Enviroment, using mongodb://127.0.0.1:27017');
+    mongodbURL = 'mongodb://127.0.0.1:27017';
 }
 
 async function connectDb(){
