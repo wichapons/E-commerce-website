@@ -16,8 +16,14 @@ if(process.env.SERVER_STATUS === 'prod'){
 }
 
 async function connectDb(){
-    const client = await MongoClient.connect(mongodbURL);
-    database = client.db('Topazio-Online-Shop');
+    try {
+        const client = await MongoClient.connect(mongodbURL);
+        database = client.db('Topazio-Online-Shop');
+        console.log('Connected to database successfully!');
+      } catch (error) {
+        console.error('Error connecting to database:', error);
+        throw error;
+      }
 }
 
 function getDb(){
