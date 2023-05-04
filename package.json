@@ -4,7 +4,8 @@
   "description": "This repository contains the source code for an online shopping website, built for the purpose of web development education. The website is built using a combination of JavaScript, CSS and HTML as a frontend, NodeJS for backend and MongoDB as a database. The code has been refactored using the MVC (Model-View-Controller) method to improve maintainability and scalability.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
